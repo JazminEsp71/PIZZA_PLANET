@@ -6,10 +6,22 @@ const MainMenuScreen = ({ navigation }) => {
         <View style={styles.container}>
             <Text style={styles.title}>Main Menu</Text>
             <View style={styles.buttonContainer}>
-                <Button title='Employed' onPress={() => navigation.navigate('Employed')}/>
-                <Button title='Customers' onPress={() => navigation.navigate('Customers')}/>
-                <Button title='US' onPress={() => navigation.navigate('US')}/>
-                <Button title='Exit' onPress={'Login'}/>
+                <Button
+                    title="Employed"
+                    onPress={() => navigation.navigate('Employed')} 
+                />
+                <Button
+                    title="Customers"
+                    onPress={() => navigation.navigate('Customer')} 
+                />
+                <Button
+                    title="US"
+                    onPress={() => navigation.navigate('AboutUs')} 
+                />
+                <Button
+                    title="Exit"
+                    onPress={() => navigation.navigate('Login')}
+                />
             </View>
         </View>
     );
