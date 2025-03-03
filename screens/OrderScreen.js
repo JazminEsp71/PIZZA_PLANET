@@ -1,7 +1,9 @@
 import React, { useState, useContext } from 'react';
-import { View, Text, StyleSheet, Button, Alert } from 'react-native';
+import { View, Text, StyleSheet, Button, Alert, ImageBackground } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
+import { LinearGradient } from 'expo-linear-gradient';
 import { OrderContext } from '../context/OrderContext'; 
+import starsImage from '../assets/stars.png';
 
 const OrderScreen = ({ route, navigation }) => {
     const pizzas = route.params?.pizzas || [];
@@ -30,74 +32,127 @@ const OrderScreen = ({ route, navigation }) => {
     };
 
     return (
-        <View style={styles.container}>
-            <Text style={styles.title}>Realizar Pedido</Text>
-            <View style={styles.pickerContainer}>
-                <Text>Selecciona una pizza:</Text>
-                <Picker
-                    selectedValue={selectedPizza}
-                    onValueChange={(itemValue) => {
-                        setSelectedPizza(itemValue);
-                        updatePrice(itemValue, selectedSize);
-                    }}
-                >
-                    {pizzas.map((pizza, index) => (
-                        <Picker.Item key={index} label={pizza.name} value={pizza.name} />
-                    ))}
-                </Picker>
+        <LinearGradient colors={['#0A0F24', '#1C2E4A']} style={styles.container}>
+            <ImageBackground source={starsImage} style={styles.background}>
+                <View style={styles.orderContainer}>
+                <Text style={styles.title}>Realizar Pedido</Text>
+                <View style={styles.pickerContainer}>
+                    <Text style={styles.label}>Selecciona una pizza:</Text>
+                    <Picker
+                        selectedValue={selectedPizza}
+                        onValueChange={(itemValue) => {
+                            setSelectedPizza(itemValue);
+                            updatePrice(itemValue, selectedSize);
+                        }}
+                        style={styles.picker}
+                        dropdownIconColor="#39FF14">
+                        {pizzas.map((pizza, index) => (
+                            <Picker.Item key={index} label={pizza.name} value={pizza.name} />
+                        ))}
+                    </Picker>
+                </View>
+                <View style={styles.pickerContainer}>
+                    <Text style={styles.label}>Selecciona el tamaño:</Text>
+                    <Picker
+                        selectedValue={selectedSize}
+                        onValueChange={(itemValue) => {
+                            setSelectedSize(itemValue);
+                            updatePrice(selectedPizza, itemValue);
+                        }}
+                        style={styles.picker}
+                        dropdownIconColor="#39FF14"
+                    >
+                        <Picker.Item label="Chica" value="small" />
+                        <Picker.Item label="Grande" value="large" />
+                    </Picker>
+                </View>
+                <Text style={styles.priceText}>Precio: {price}</Text>
             </View>
-            <View style={styles.pickerContainer}>
-                <Text>Selecciona el tamaño:</Text>
-                <Picker
-                    selectedValue={selectedSize}
-                    onValueChange={(itemValue) => {
-                        setSelectedSize(itemValue);
-                        updatePrice(selectedPizza, itemValue);
-                    }}
-                >
-                    <Picker.Item label="Chica" value="small" />
-                    <Picker.Item label="Grande" value="large" />
-                </Picker>
-            </View>
-            <Text style={styles.priceText}>Precio: {price}</Text>
             <View style={styles.buttonContainer}>
-                <Button
-                    title="Save"
-                    onPress={saveOrder}
-                />
-                <Button
-                    title="Exit"
-                    onPress={() => navigation.navigate('Login')}
-                />
-            </View>
-        </View>
+                    <Text style={styles.button} onPress={saveOrder}>
+                            Save
+                        </Text>
+                        <Text style={styles.button} onPress={() => navigation.navigate('Login')}>
+                            Exit
+                        </Text>
+                </View>
+            </ImageBackground>
+        </LinearGradient>
     );
 };
 
 const styles = StyleSheet.create({
     container: {
+        flex: 1
+    },
+
+    background: {
         flex: 1,
+        width: '100%',
+        height: '100%',
         justifyContent: 'center',
         alignItems: 'center',
-        padding: 16,
+    },
+    content: {
+        flex: 1,
+        padding: 20,
+        alignItems: 'center',
     },
     title: {
-        fontSize: 24,
+        fontSize: 32,
         marginBottom: 20,
         fontWeight: 'bold',
+        color: '#39FF14', 
+        textAlign: 'center'
     },
     pickerContainer: {
         width: '100%',
+        backgroundColor: 'rgba(0,0,0,0.6)',
+        borderRadius: 10,
+        padding: 10,
         marginBottom: 20,
+    },
+    label: {
+        color: '#FFF',
+        fontSize: 18,
+        marginBottom: 5,
+    },
+    picker: {
+        color: '#FFF',
     },
     priceText: {
         fontSize: 20,
         fontWeight: 'bold',
+        color: '#39FF14',
         marginTop: 20,
     },
     buttonContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginTop: 20,
         width: '80%',
     },
+    button: {
+        fontSize: 18,
+        color: '#39FF14',
+        padding: 10,
+        borderWidth: 2,
+        borderColor: '#39FF14',
+        borderRadius: 10,
+        textAlign: 'center',
+        width: 100,
+        marginHorizontal: 10,
+    },
+    orderContainer: {
+        width: '100%',
+        maxWidth: 350,
+        backgroundColor: 'rgba(0,0,0,0.6)',
+        borderRadius: 10,
+        padding: 20,
+        alignItems: 'center',
+        marginBottom: 20,
+    },
+    
 });
 
 export default OrderScreen;

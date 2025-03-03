@@ -1,5 +1,7 @@
 import React from 'react';
-import { View, Text, Button, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, Button, StyleSheet, ScrollView, ImageBackground, BackHandler } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
+import starsImage from '../assets/stars.png';
 
 const MenuScreen = ({ navigation }) => {
     const pizzas = [
@@ -11,8 +13,10 @@ const MenuScreen = ({ navigation }) => {
     ];
 
     return (
-        <View style={styles.container}>
-            <Text style={styles.title}>Menú de la Pizzería</Text>
+        <LinearGradient colors={['#0A0F24', '#1C2E4A']} style={styles.container}>
+            <ImageBackground source={starsImage} style={styles.background}>
+            <Text style={styles.title}>Pizza Planet</Text>
+            <Text style={styles.title}>Menú</Text>
             <ScrollView style={styles.menuContainer}>
                 {pizzas.map((pizza, index) => (
                     <View key={index} style={styles.pizzaItem}>
@@ -24,11 +28,14 @@ const MenuScreen = ({ navigation }) => {
                     </View>
                 ))}
             </ScrollView>
-            <Button
-                title="Exit"
-                onPress={() => navigation.navigate('Login')}
-            />
-        </View>
+            <View style={styles.buttonContainer}>
+                <Text style={styles.button} onPress={() => navigation.navigate('Login')}>
+                    Exit
+                </Text>
+
+            </View>
+        </ImageBackground>
+        </LinearGradient>
     );
 };
 
@@ -37,32 +44,64 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        padding: 16,
+    },
+    background: {
+        flex: 1,
+        width: '100%',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    content: {
+        width: '85%',
+        alignItems: 'center',
+        paddingVertical: 20,
     },
     title: {
-        fontSize: 24,
-        marginBottom: 20,
+        fontSize: 40,
         fontWeight: 'bold',
+        color: '#39FF14',
+        marginBottom: 20,
+        fontFamily: 'sans-serif-condensed',
+        textAlign: 'center',
     },
     menuContainer: {
-        width: '100%',
-        marginBottom: 20,
+        width: '90%',
+        maxHeight: '60%',
+        backgroundColor: 'rgba(0,0,0,0.6)',
+        borderRadius: 10,
+        padding: 10,
     },
     pizzaItem: {
         flexDirection: 'row',
         justifyContent: 'space-between',
         padding: 10,
         borderBottomWidth: 1,
-        borderBottomColor: '#ccc',
+        borderBottomColor: '#39FF14',
     },
     pizzaName: {
         fontSize: 18,
+        color: '#FFF',
+        fontWeight: 'bold',
     },
     pizzaPrices: {
         alignItems: 'flex-end',
     },
     pizzaPrice: {
         fontSize: 16,
+        color: '#39FF14',
+    },
+    buttonContainer: {
+        marginTop: 20,
+    },
+    button: {
+        fontSize: 18,
+        color: '#39FF14',
+        padding: 10,
+        borderWidth: 2,
+        borderColor: '#39FF14',
+        borderRadius: 10,
+        textAlign: 'center',
+        width: 100,
     },
 });
 

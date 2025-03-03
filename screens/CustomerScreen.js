@@ -1,7 +1,8 @@
 import React from 'react';
-import { View, Text, Button, StyleSheet, ImageBackground } from 'react-native';
+import { View, Text, Button, StyleSheet, ImageBackground, Image } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import starsImage from '../assets/stars.png';
+import logoAlien from '../assets/logoAlien.webp'; 
 
 const CustomerScreen = ({ navigation }) => {
     const pizzas = [
@@ -16,6 +17,7 @@ const CustomerScreen = ({ navigation }) => {
         <LinearGradient colors={['#0A0F24', '#1C2E4A']} style={styles.container}>
             <ImageBackground source={starsImage} style={styles.background}>
                 <View style={styles.content}>
+                <Image source={logoAlien} style={styles.logo} resizeMode="contain" />
                     <Text style={styles.title}>CUSTOMER</Text>
                     <View style={styles.buttonContainer}>
                         <View style={styles.button}>
@@ -68,6 +70,11 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         overflow: 'hidden',
         width: '100%',
+    },
+    logo: {
+        width: 120,
+        height: 120,
+        marginBottom: 10, // 🔹 Espacio entre la imagen y el título
     },
 });
 
