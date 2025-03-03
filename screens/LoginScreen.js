@@ -155,6 +155,7 @@ const styles = StyleSheet.create({
         marginBottom: 10,
         backgroundColor: '#39FF14', 
         borderRadius: 10,
+        overflow: 'hidden',
     },
 });
 
