@@ -35,9 +35,9 @@ const OrderScreen = ({ route, navigation }) => {
         <LinearGradient colors={['#0A0F24', '#1C2E4A']} style={styles.container}>
             <ImageBackground source={starsImage} style={styles.background}>
                 <View style={styles.orderContainer}>
-                <Text style={styles.title}>Realizar Pedido</Text>
+                <Text style={styles.title}>Place order</Text>
                 <View style={styles.pickerContainer}>
-                    <Text style={styles.label}>Selecciona una pizza:</Text>
+                    <Text style={styles.label}>Select the pizza:</Text>
                     <Picker
                         selectedValue={selectedPizza}
                         onValueChange={(itemValue) => {
@@ -52,7 +52,7 @@ const OrderScreen = ({ route, navigation }) => {
                     </Picker>
                 </View>
                 <View style={styles.pickerContainer}>
-                    <Text style={styles.label}>Selecciona el tamaño:</Text>
+                    <Text style={styles.label}>Select the size:</Text>
                     <Picker
                         selectedValue={selectedSize}
                         onValueChange={(itemValue) => {
@@ -66,7 +66,7 @@ const OrderScreen = ({ route, navigation }) => {
                         <Picker.Item label="Grande" value="large" />
                     </Picker>
                 </View>
-                <Text style={styles.priceText}>Precio: {price}</Text>
+                <Text style={styles.priceText}>Price: {price}</Text>
             </View>
             <View style={styles.buttonContainer}>
                     <Text style={styles.button} onPress={saveOrder}>

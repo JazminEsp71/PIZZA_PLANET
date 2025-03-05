@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { View, Text, Button, StyleSheet, ImageBackground, ScrollView } from 'react-native';
+import { View, Text, Button, StyleSheet, ImageBackground, ScrollView, Image } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import starsImage from '../assets/stars.png';
 import { OrderContext } from '../context/OrderContext';
@@ -11,7 +11,7 @@ const EmployedScreen = ({ navigation }) => {
         <LinearGradient colors={['#0A0F24', '#1C2E4A']} style={styles.container}>
             <ImageBackground source={starsImage} style={styles.background}>
                 <View style={styles.content}>
-                    <Text style={styles.title}>Pedidos</Text>
+                    <Text style={styles.title}>Orders</Text>
                     <ScrollView style={styles.scrollContainer}>
                         {orders && orders.length > 0 ? (
                             orders.map((order, index) => (
@@ -22,20 +22,20 @@ const EmployedScreen = ({ navigation }) => {
                                                 🍕 Pizza: {order.pizza} | 📏 Tamaño: {order.size} | 💲 Precio: {order.price}
                                             </Text>
                                             <View style={styles.button}>
-                                                <Button title="Tomar Orden" onPress={() => takeOrder(index)} color="#39FF14" />
+                                                <Button title="Take Order" onPress={() => takeOrder(index)} color="#39FF14" />
                                             </View>
                                         </>
                                     ) : (
-                                        <Text style={styles.orderText}>Campo vacío</Text>
+                                        <Text style={styles.orderText}>Empty field</Text>
                                     )}
                                 </View>
                             ))
                         ) : (
-                            <Text style={styles.emptyText}>No hay pedidos disponibles</Text>
+                            <Text style={styles.emptyText}>No orders available</Text>
                         )}
                     </ScrollView>
                     <View style={styles.button}>
-                        <Button title="Salir" onPress={() => navigation.navigate('Login')} color="#39FF14" />
+                        <Button title="Exit" onPress={() => navigation.navigate('Login')} color="#39FF14" />
                     </View>
                 </View>
             </ImageBackground>

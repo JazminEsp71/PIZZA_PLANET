@@ -65,14 +65,14 @@ const LoginScreen = ({ navigation }) => {
                 <View style={styles.content}>
                     <Text style={styles.title}>Pizza Planet</Text>
                     <TextInput
-                        placeholder="Usuario"
+                        placeholder="User"
                         placeholderTextColor="#FFF"
                         value={username}
                         onChangeText={setUsername}
                         style={styles.input}
                     />
                     <TextInput
-                        placeholder="Contraseña"
+                        placeholder="Password"
                         placeholderTextColor="#FFF"
                         value={password}
                         onChangeText={setPassword}
@@ -82,14 +82,14 @@ const LoginScreen = ({ navigation }) => {
                     <View style={styles.buttonContainer}>
                         <View style={styles.button}>
                             <Button
-                                title="Iniciar Sesión"
+                                title="Login"
                                 onPress={handleLogin}
                                 color="#39FF14"
                             />
                         </View>
                         <View style={styles.button}>
                             <Button
-                                title="Salir"
+                                title="Exit"
                                 onPress={handleExit}
                                 color="#39FF14" 
                             />

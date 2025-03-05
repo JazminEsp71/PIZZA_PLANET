@@ -1,13 +1,15 @@
 import React from 'react';
-import { View, Text, Button, StyleSheet, ImageBackground } from 'react-native';
+import { View, Text, Button, StyleSheet, ImageBackground, Image } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import starsImage from '../assets/stars.png';
+import alien from '../assets/aliens.webp'
 
 const MainMenuScreen = ({ navigation }) => {
     return (
         <LinearGradient colors={['#0A0F24', '#1C2E4A']} style={styles.container}>
             <ImageBackground source={starsImage} style={styles.background}>
                 <View style={styles.content}>
+                    <Image source={alien} style={styles.logo} resizeMode="contain" />
                     <Text style={styles.title}>Menu</Text>
                     <View style={styles.buttonContainer}>
                         <View style={styles.button}>
@@ -61,6 +63,11 @@ const styles = StyleSheet.create({
         width: '100%',
         justifyContent: 'center',
         alignItems: 'center',
+    },
+    logo: {
+        width: 250,
+        height: 250,
+        marginBottom: 10, 
     },
 });
 

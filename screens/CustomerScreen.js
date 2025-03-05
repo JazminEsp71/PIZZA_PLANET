@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
     logo: {
         width: 120,
         height: 120,
-        marginBottom: 10, // 🔹 Espacio entre la imagen y el título
+        marginBottom: 10, 
     },
 });
 

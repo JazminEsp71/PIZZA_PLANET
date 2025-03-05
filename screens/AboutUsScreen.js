@@ -1,17 +1,20 @@
 import React from 'react';
-import { View, Text, StyleSheet, ImageBackground } from 'react-native';
+import { View, Text, StyleSheet, ImageBackground, Image } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import starsImage from '../assets/stars.png';
+import logo from '../assets/logo.png'; 
 
 const AboutUsScreen = () => {
     return (
         <LinearGradient colors={['#0A0F24', '#1C2E4A']} style={styles.container}>
             <ImageBackground source={starsImage} style={styles.background}>
                 <View style={styles.content}>
-                    <Text style={styles.title}>Sobre Nosotros</Text>
+                    <Image source={logo} style={styles.logo} resizeMode="contain" />
+                    <Text style={styles.title}>
+                    About us</Text>
                     <Text style={styles.text}>
-                        🚀 Bienvenido a Pizza Planet, donde la pizza es más que comida... ¡es una experiencia galáctica!
-                        Desde 1995, hemos llevado el sabor del espacio a la Tierra con nuestras pizzas interplanetarias. 🌌🍕
+                        🚀 Welcome to Pizza Planet, where pizza is more than just food... it's a galactic experience!
+                        Since 1995, we've been bringing the taste of space to Earth with our interplanetary pizzas. 🌌🍕
                     </Text>
                 </View>
             </ImageBackground>
@@ -50,6 +53,11 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontFamily: 'sans-serif',
         lineHeight: 28,
+    },
+    logo: {
+        width: 180,
+        height: 180,
+        marginBottom: 10, 
     },
 });
 
